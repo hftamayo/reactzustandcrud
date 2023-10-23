@@ -1,4 +1,4 @@
-import { Nav, Navbar } from "react-bootstrap";
+import { Container, Navbar, Nav } from "react-bootstrap";
 
 const Layout = ({ children }) => {
   return (
