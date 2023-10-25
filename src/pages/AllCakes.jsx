@@ -1,8 +1,15 @@
 import { Row, Card, Container, Col } from "react-bootstrap";
 import { useCakeStore } from "../store/cakeStore";
+import { useEffect } from "react";
 
 function AllCakes() {
   const allCakes = useCakeStore((state) => state.cakeData);
+  const getCakesAPICall = useCakeStore((state) => state.getCakesAPICall);
+
+  useEffect(() => {
+    getCakesAPICall();
+  }, []);
+  
   return (
     <>
       <Container className="mt-2">
