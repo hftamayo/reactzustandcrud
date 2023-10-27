@@ -44,4 +44,25 @@ export const useCakeStore = create((set) => ({
       state.cakeData.push(apiResponse.data);
     });
   },
+  updateCakeAPI: async (payload) => {
+    const apiResponse = await axios.put(
+      `http://localhost:8003/cakes/${payload.id}`,
+      payload
+    );
+    set((state) => {
+      let cakeState = state.cakeData.filter((c) => c.id !== payload.id);
+      cakeState.cakeData.push(apiResponse.data);
+      state.cakeData = cakeState;
+    });
+  },
 }));
+
+export const getCakeById = (id) => {
+  return (state) => {
+    let cake = state.cakeData.filter((c) => c.id === Number(id));
+    if (cake) {
+      return cake[0];
+    }
+    return null;
+  };
+};
