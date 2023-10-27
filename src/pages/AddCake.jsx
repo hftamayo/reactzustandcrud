@@ -1,20 +1,23 @@
 import React, { useRef } from "react";
 import { Container, Form, Row, Col } from "react-bootstrap";
 import { useCakeStore } from "../store/cakeStore";
+import { useNavigate } from "react-router-dom";
 
 function AddCake() {
   const name = useRef("");
   const cost = useRef("");
   const imgUrl = useRef("");
   const addCakeApiCall = useCakeStore((state) => state.addCakeAPI);
+  const navigate = useNavigate();
 
   const addCakeHandler = async () => {
     let payload = {
-        name: name.current.value,
-        cost: cost.current.value,
-        imageUrl: imgUrl.current.value,
-
-    }
+      name: name.current.value,
+      cost: Number(cost.current.value),
+      imageUrl: imgUrl.current.value,
+    };
+    await addCakeApiCall(payload);
+    navigate("/");
   };
 
   return (
