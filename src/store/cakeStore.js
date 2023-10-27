@@ -1,6 +1,5 @@
 import axios from "axios";
 import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
 
 export const useCakeStore = create((set) => ({
   cakeData: [
