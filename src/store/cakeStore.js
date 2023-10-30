@@ -55,6 +55,12 @@ export const useCakeStore = create((set) => ({
       state.cakeData = cakeState;
     });
   },
+  deleteCakeAPI: async (id) => {
+    const apiResponse = await axios.delete(`http://localhost:8003/cakes/${id}`);
+    set((state) => {
+      state.cakeData = state.cakeData.filter((c) => c.id !== id);
+    });
+  },
 }));
 
 export const getCakeById = (id) => {
