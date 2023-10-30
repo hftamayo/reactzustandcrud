@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getCakeById, useCakeStore } from "../store/cakeStore";
-import { useRef } from "react";
-import {Container, Row, Col, Form, Button} from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
 const EditCake = () => {
   const { id } = useParams();
@@ -10,15 +9,28 @@ const EditCake = () => {
   const name = useRef("");
   const cost = useRef("");
   const imageUrl = useRef("");
+  const updateAPICall = useCakeStore((state) => state.updateCakeAPI);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if(cakeToEdit){
-        name.current.value = cakeToEdit.name;
-        cost.current.value = cakeToEdit.cost;
-        imageUrl.current.value = cakeToEdit.imageUrl;
-
+    if (cakeToEdit) {
+      name.current.value = cakeToEdit.name;
+      cost.current.value = cakeToEdit.cost;
+      imageUrl.current.value = cakeToEdit.imageUrl;
     }
-  }, [cakeToEdit])
+  }, [cakeToEdit]);
+
+  const updateCakeHandler = async () => {
+    let payload = {
+      name: name.current.value,
+      cost: Number(cost.current.value),
+      imageUrl: imageUrl.current.value,
+      id: Number(id),
+    };
+    await updateAPICall(payload);
+    navigate("/view-cake");
+  };
+
   return (
     <>
       <Container className="mt-2">
