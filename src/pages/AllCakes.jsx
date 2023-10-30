@@ -2,11 +2,15 @@ import { Row, Card, Container, Col } from "react-bootstrap";
 import { useCakeStore } from "../store/cakeStore";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import DeleteConfirmation from "../components/shared/DeleteConfirmation";
 
 const AllCakes = () => {
   const allCakes = useCakeStore((state) => state.cakeData);
-  const getCakesAPICall = useCakeStore((state) => state.getCakesAPICall);
+  const getCakesAPICall = useCakeStore((state) => state.getCakesAPI);
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [itemIdToDelete, setItemIdToDelete] = useState(0);
+  const deleteCakeApiCall = useCakeStore((state) => statedeleteCakeAPI);
 
   useEffect(() => {
     if (allCakes.length == 0) {
@@ -14,8 +18,33 @@ const AllCakes = () => {
     }
   }, []);
 
+  const openDeleteConfirmationModalHandler = (id) => {
+    setItemIdToDelete(id);
+    setShowModal(true);
+  };
+
+  const closeDeleteConfirmationModalHandler = () => {
+    setItemIdToDelete(0);
+    setShowModal(false);
+  };
+
+  const deleteConfirmHandler = async () => {
+    await deleteCakeApiCall(itemIdToDelete);
+    setItemIdToDelete(0);
+    setShowModal(false);
+  };
+
   return (
     <>
+      <DeleteConfirmation
+        showModal={showModal}
+        title="Delete Confirmation"
+        body="Are you sure to delete this item?"
+        closeDeleteConfirmationModalHandler={
+          closeDeleteConfirmationModalHandler
+        }
+        deleteConfirmHandler = {deleteConfirmHandler}
+      ></DeleteConfirmation>
       <Container className="mt-2">
         <Row>
           <Col className="col-md-4 offset-md-4">
@@ -42,6 +71,21 @@ const AllCakes = () => {
                 <Card.Body>
                   <Card.Title>{cake.name}</Card.Title>
                   <Card.Text>Price - {cake.cost}</Card.Text>
+                  <Button
+                    variant="primary"
+                    type="button"
+                    onClick={() => navigate(`/edit-cake/${cake.id}`)}
+                  >
+                    Edit
+                  </Button>{" "}
+                  |
+                  <Button
+                    variant="danger"
+                    type="button"
+                    onClick={() => openDeleteConfirmationModalHandler(cake.id)}
+                  >
+                    Delete
+                  </Button>
                 </Card.Body>
               </Card>
             </Col>
