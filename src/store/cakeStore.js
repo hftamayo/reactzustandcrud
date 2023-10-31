@@ -33,22 +33,22 @@ export const useCakeStore = create((set) => ({
     },
   ],
   getCakesAPI: async () => {
-    const apiResponse = await axios.get("");
+    // const apiResponse = await axios.get("");
     set((state) => {
       state.cakeData = apiResponse.data;
     });
   },
   addCakeAPI: async (payload) => {
-    const apiResponse = await axios.post("", payload);
+    // const apiResponse = await axios.post("", payload);
     set((state) => {
       state.cakeData.push(apiResponse.data);
     });
   },
   updateCakeAPI: async (payload) => {
-    const apiResponse = await axios.put(
-      `http://localhost:8003/cakes/${payload.id}`,
-      payload
-    );
+    // const apiResponse = await axios.put(
+    //   `http://localhost:8003/cakes/${payload.id}`,
+    //   payload
+    // );
     set((state) => {
       let cakeState = state.cakeData.filter((c) => c.id !== payload.id);
       cakeState.cakeData.push(apiResponse.data);
@@ -56,10 +56,10 @@ export const useCakeStore = create((set) => ({
     });
   },
   deleteCakeAPI: async (id) => {
-    const apiResponse = await axios.delete(`http://localhost:8003/cakes/${id}`);
-    set((state) => {
-      state.cakeData = state.cakeData.filter((c) => c.id !== id);
-    });
+    // const apiResponse = await axios.delete(`http://localhost:8003/cakes/${id}`);
+    // set((state) => {
+    //   state.cakeData = state.cakeData.filter((c) => c.id !== id);
+    // });
   },
 }));
 
