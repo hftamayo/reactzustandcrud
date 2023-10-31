@@ -17,7 +17,7 @@ function AddCake() {
       imageUrl: imgUrl.current.value,
     };
     await addCakeApiCall(payload);
-    navigate("/");
+    navigate("/view-cake");
   };
 
   return (
