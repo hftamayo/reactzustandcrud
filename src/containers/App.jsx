@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
-import Layout from "./components/shared/Layout";
+import Layout from "../components/shared/Layout";
 import { Routes, Route } from "react-router-dom";
-import AllCakes from "./pages/AllCakes";
-import AddCake from "./pages/AddCake";
-import EditCake from "./pages/EditCake";
+import AllCakes from "../pages/AllCakes";
+import AddCake from "../pages/AddCake";
+import EditCake from "../pages/EditCake";
 
 function App() {
   return (
