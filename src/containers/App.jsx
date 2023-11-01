@@ -2,9 +2,9 @@ import React from "react";
 import "./App.css";
 import Layout from "../components/shared/Layout";
 import { Routes, Route } from "react-router-dom";
-import AllCakes from "../components/pages/AllCakes";
-import AddCake from "../components/pages/AddCake";
-import EditCake from "../components/pages/EditCake";
+import AllCakes from "../components/entities/Cakes/AllCakes";
+import AddCake from "../components/entities/Cakes/AddCake";
+import EditCake from "../components/entities/Cakes/EditCake";
 
 function App() {
   return (

@@ -1,22 +1,33 @@
-import React, { useRef } from "react";
-import { Container, Form, Row, Col, Button } from "react-bootstrap";
-import { useCakeStore } from "../store/cakeStore";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { getCakeById, useCakeStore } from "../../store/cakeStore";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
-function AddCake() {
+const EditCake = () => {
+  const { id } = useParams();
+  const cakeToEdit = useCakeStore(getCakeById(id));
   const name = useRef("");
   const cost = useRef("");
-  const imgUrl = useRef("");
-  const addCakeApiCall = useCakeStore((state) => state.addCakeAPI);
+  const imageUrl = useRef("");
+  const updateAPICall = useCakeStore((state) => state.updateCakeAPI);
   const navigate = useNavigate();
 
-  const addCakeHandler = async () => {
+  useEffect(() => {
+    if (cakeToEdit) {
+      name.current.value = cakeToEdit.name;
+      cost.current.value = cakeToEdit.cost;
+      imageUrl.current.value = cakeToEdit.imageUrl;
+    }
+  }, [cakeToEdit]);
+
+  const updateCakeHandler = async () => {
     let payload = {
       name: name.current.value,
       cost: Number(cost.current.value),
-      imageUrl: imgUrl.current.value,
+      imageUrl: imageUrl.current.value,
+      id: Number(id),
     };
-    await addCakeApiCall(payload);
+    await updateAPICall(payload);
     navigate("/view-cake");
   };
 
@@ -25,7 +36,7 @@ function AddCake() {
       <Container className="mt-2">
         <Row>
           <Col className="col-md-8 offset-md-2">
-            <legend>Create a New Dessert</legend>
+            <legend>Update a Dessert</legend>
             <Form.Group className="mb-3" controlId="formName">
               <Form.Label>Name</Form.Label>
               <Form.Control type="text" ref={name} />
@@ -38,14 +49,14 @@ function AddCake() {
               <Form.Label>Image Url</Form.Label>
               <Form.Control type="text" ref={imgUrl} />
             </Form.Group>
-            <Button variant="primary" type="button" onClick={addCakeHandler}>
-              Add
+            <Button variant="primary" type="button" onClick={updateCakeHandler}>
+              Update
             </Button>
           </Col>
         </Row>
       </Container>
     </>
   );
-}
+};
 
-export default AddCake;
+export default EditCake;
