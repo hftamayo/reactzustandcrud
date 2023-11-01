@@ -2,7 +2,7 @@ import { Row, Card, Container, Col, Button } from "react-bootstrap";
 import { useCakeStore } from "../../store/cakeStore";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DeleteConfirmation from "../../shared/DeleteConfirmation";
+import DeleteConfirmation from "../../UI/DeleteConfirmation";
 
 const AllCakes = () => {
   const allCakes = useCakeStore((state) => state.cakeData);

@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Layout from "../components/shared/Layout";
+import Layout from "../components/UI/Layout";
 import { Routes, Route } from "react-router-dom";
 import AllCakes from "../components/entities/Cakes/AllCakes";
 import AddCake from "../components/entities/Cakes/AddCake";
