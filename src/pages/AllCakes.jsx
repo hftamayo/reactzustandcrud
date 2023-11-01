@@ -1,6 +1,6 @@
-import { Row, Card, Container, Col } from "react-bootstrap";
+import { Row, Card, Container, Col, Button } from "react-bootstrap";
 import { useCakeStore } from "../store/cakeStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DeleteConfirmation from "../components/shared/DeleteConfirmation";
 
@@ -10,7 +10,7 @@ const AllCakes = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [itemIdToDelete, setItemIdToDelete] = useState(0);
-  const deleteCakeApiCall = useCakeStore((state) => statedeleteCakeAPI);
+  const deleteCakeApiCall = useCakeStore((state) => state.deleteCakeAPI);
 
   useEffect(() => {
     if (allCakes.length == 0) {
@@ -78,7 +78,6 @@ const AllCakes = () => {
                   >
                     Edit
                   </Button>{" "}
-                  |
                   <Button
                     variant="danger"
                     type="button"
