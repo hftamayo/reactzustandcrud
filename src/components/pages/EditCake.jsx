@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getCakeById, useCakeStore } from "../../store/cakeStore";
+import { getCakeById, useCakeStore } from "../store/cakeStore";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
 const EditCake = () => {

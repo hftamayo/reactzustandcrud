@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
-import { useCakeStore } from "../../store/cakeStore";
+import { useCakeStore } from "../store/cakeStore";
 import { useNavigate } from "react-router-dom";
 
 function AddCake() {
