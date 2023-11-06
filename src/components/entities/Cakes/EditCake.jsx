@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getCakeById, useCakeStore } from "../../store/cakeStore";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
@@ -31,31 +31,36 @@ const EditCake = () => {
     navigate("/view-cake");
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
-    <>
-      <Container className="mt-2">
-        <Row>
-          <Col className="col-md-8 offset-md-2">
-            <legend>Update a Dessert</legend>
-            <Form.Group className="mb-3" controlId="formName">
-              <Form.Label>Name</Form.Label>
-              <Form.Control type="text" ref={name} />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formCost">
-              <Form.Label>Cost</Form.Label>
-              <Form.Control type="text" ref={cost} />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formImgUrl">
-              <Form.Label>Image Url</Form.Label>
-              <Form.Control type="text" ref={imgUrl} />
-            </Form.Group>
-            <Button variant="primary" type="button" onClick={updateCakeHandler}>
-              Update
-            </Button>
-          </Col>
-        </Row>
-      </Container>
-    </>
+    <Container className="mt-2">
+      <Row>
+        <Col className="col-md-8 offset-md-2">
+          <legend>Update a Dessert</legend>
+          <Form.Group className="mb-3" controlId="formName">
+            <Form.Label>Name</Form.Label>
+            <Form.Control type="text" ref={name} />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formCost">
+            <Form.Label>Cost</Form.Label>
+            <Form.Control type="text" ref={cost} />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formImgUrl">
+            <Form.Label>Image Url</Form.Label>
+            <Form.Control type="text" ref={imageUrl} />
+          </Form.Group>
+          <Button variant="primary" type="button" onClick={updateCakeHandler}>
+            Update
+          </Button>{" "}
+          <Button variant="danger" type="button" onClick={handleGoBack}>
+            Go Back
+          </Button>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
