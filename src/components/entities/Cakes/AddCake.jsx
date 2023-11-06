@@ -20,31 +20,36 @@ function AddCake() {
     navigate("/view-cake");
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
-    <>
-      <Container className="mt-2">
-        <Row>
-          <Col className="col-md-8 offset-md-2">
-            <legend>Create a New Dessert</legend>
-            <Form.Group className="mb-3" controlId="formName">
-              <Form.Label>Name</Form.Label>
-              <Form.Control type="text" ref={name} />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formCost">
-              <Form.Label>Cost</Form.Label>
-              <Form.Control type="text" ref={cost} />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formImgUrl">
-              <Form.Label>Image Url</Form.Label>
-              <Form.Control type="text" ref={imgUrl} />
-            </Form.Group>
-            <Button variant="primary" type="button" onClick={addCakeHandler}>
-              Add
-            </Button>
-          </Col>
-        </Row>
-      </Container>
-    </>
+    <Container className="mt-2">
+      <Row>
+        <Col className="col-md-8 offset-md-2">
+          <legend>Create a New Dessert</legend>
+          <Form.Group className="mb-3" controlId="formName">
+            <Form.Label>Name</Form.Label>
+            <Form.Control type="text" ref={name} />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formCost">
+            <Form.Label>Cost</Form.Label>
+            <Form.Control type="text" ref={cost} />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formImgUrl">
+            <Form.Label>Image Url</Form.Label>
+            <Form.Control type="text" ref={imgUrl} />
+          </Form.Group>
+          <Button variant="primary" type="button" onClick={addCakeHandler}>
+            Add
+          </Button>{" "}
+          <Button variant="danger" type="button" onClick={handleGoBack}>
+            Go Back
+          </Button>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
