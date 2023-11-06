@@ -5,10 +5,10 @@ const Layout = ({ children }) => {
     <>
       <Navbar bg="primary" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">Cake Store</Navbar.Brand>
+          <Navbar.Brand href="/">Cake Store</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="/view-cake">Catalog</Nav.Link>
+            <Nav.Link href="#customize">Customize</Nav.Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
         </Container>
