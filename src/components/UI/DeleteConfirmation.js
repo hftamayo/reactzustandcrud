@@ -2,8 +2,7 @@ import { Button, Modal } from "react-bootstrap";
 
 const DeleteConfirmation = (props) => {
   return (
-    <>
-      <Modal
+    <Modal
         show={props.showModal}
         onHide={() => {
           props.closeDeleteConfirmationModalHandler();
@@ -32,7 +31,6 @@ const DeleteConfirmation = (props) => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
   );
 };
 
