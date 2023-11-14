@@ -1,4 +1,4 @@
-import { useCakeStore } from "../../../components/store/cakeStore";
+import { useCakeStore } from "../../../../components/store/cakeStore";
 import { renderHook } from "@testing-library/react-hooks";
 
 jest.mock("zustand");
